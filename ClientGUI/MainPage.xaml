@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientGUI.MainPage">
+
+    <VerticalStackLayout Padding="30" Spacing="80">
+        <!-- Welcome Screen -->
+        <VerticalStackLayout x:Name="WelcomeScreen" IsVisible="true">
+            <HorizontalStackLayout Spacing="25">
+                <Label Text="UofU CS 3500" FontSize="30"/>
+                <Label Text="Welcome to Agario" FontSize="15"/>
+            </HorizontalStackLayout>
+            <Label HeightRequest="40"/>
+            <HorizontalStackLayout Spacing="98">
+                <Label Text="Your Name:"/>
+                <Entry x:Name="NameEntry" MinimumHeightRequest="26" HeightRequest="26" WidthRequest="200" FontSize="11" TextChanged="OnTextChanged"/>
+            </HorizontalStackLayout>
+            <Label/>
+            <HorizontalStackLayout Spacing="30">
+                <Label Text="Server Name/Address:"/>
+                <Entry x:Name="ServerEntry" MinimumHeightRequest="26" HeightRequest="26" WidthRequest="200" FontSize="11" Text="localhost" TextChanged="OnTextChanged"/>
+            </HorizontalStackLayout>
+            <Label/>
+            <HorizontalStackLayout Spacing="144">
+                <Label Text="Port:"/>
+                <Entry x:Name="PortEntry" MinimumHeightRequest="26" HeightRequest="26" WidthRequest="200" FontSize="11" Text="11000" TextChanged="OnTextChanged"/>
+            </HorizontalStackLayout>
+            <Label HeightRequest="50"/>
+            <HorizontalStackLayout Spacing="30">
+                <Button x:Name="ConnectButton" Text="Connect To Server" WidthRequest="200" IsEnabled="false" Clicked="ConnectToServerButton"/>
+                <ActivityIndicator x:Name="Spinner" IsRunning="True" IsVisible="False"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
+        <!-- Game Screen -->
+        <VerticalStackLayout x:Name="GameScreen" IsVisible="false">
+            <HorizontalStackLayout>
+                    <Label x:Name="FPSLabel" Text="FPS: "/>
+                    <Label WidthRequest="40"/>
+                    <Label x:Name="HeartBeatLabel" Text="Heart Beat: "/>
+                    <Label WidthRequest="40"/>
+                    <Label x:Name="FrameCounterLabel" Text="Frame Counter: "/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label x:Name="CenteredOnLabel" Text="Centered On: "/>
+                <Label WidthRequest="40"/>
+                <Label x:Name="MassLabel" Text="Mass: "/>
+                <Label WidthRequest="40"/>
+                <Button Clicked="Split" Text="Split (SpaceBar)" WidthRequest="200" IsVisible="False" x:Name="splitButton"/>
+            </HorizontalStackLayout>
+            <GraphicsView 
+                    x:Name="PlaySurface"
+                    VerticalOptions="Center"
+                    BackgroundColor="Blue"
+                    HeightRequest="800"
+                    WidthRequest="800">
+                <GraphicsView.GestureRecognizers>
+                    <PointerGestureRecognizer PointerMoved="PointerChanged"/>
+                </GraphicsView.GestureRecognizers>
+            </GraphicsView>
+        </VerticalStackLayout>
+            <Entry TextChanged="keyInput" x:Name="entry" Opacity="0" HeightRequest="0" WidthRequest="0"/>
+    </VerticalStackLayout>
+</ContentPage>
